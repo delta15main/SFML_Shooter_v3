@@ -4,7 +4,6 @@
 #include <random>
 
 #include "entity.h"
-//#include "HUD.h"
 
 class Enemy : public Entity {
 protected:
@@ -18,8 +17,8 @@ public:
     Enemy(const sf::Texture& texture, int heal, float vel, sf::Font& font) :
         Entity(texture, heal, vel, font),
         gen(rd()),
-        distH(10, 50),
-        distV(0.1f, 0.4f),
+        distH(heal - 10, heal),
+        distV(vel / 2.f, vel ),
         distP(0.f, MAX_SIZE)    {}
     virtual ~Enemy() = default;
 
