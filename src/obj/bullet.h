@@ -7,7 +7,7 @@
 class Bullet : public Entity {
 protected:
     sf::Vector2f direction;
-    virtual void SPAWN() = 0;
+    //  virtual void SPAWN() = 0;
 
 public:
     Bullet(const sf::Texture& texture, int heal, float vel, sf::Font& font) :
@@ -22,8 +22,8 @@ public:
     // Set
     virtual void        setLive()               override final;
     virtual void        setDeath()              override final;
-    virtual void        setDirection(sf::Vector2f& targetPos) final;
+    virtual sf::Vector2f setDirection(sf::Vector2f& playerPos, sf::Vector2f& targetPos) final;
 
     // Logics
-    virtual void        update()                override;
+    virtual void        update()                override final;
 };

@@ -7,7 +7,7 @@ void Bullet::setLive() {
     if ( direction.x == 0 && direction.y == 0 ) { return; }
     isAlive = true;
     this->setHealth(1);
-    this->SPAWN();
+    // this->SPAWN();
 }
 
 void Bullet::setDeath() {
@@ -16,9 +16,11 @@ void Bullet::setDeath() {
     this->setHealth(0);
 }
 
-void Bullet::setDirection(sf::Vector2f& targetPos) {
-    float len = sqrt(targetPos.x * targetPos.x + targetPos.y * targetPos.y);
-    direction = {targetPos.x / len, targetPos.y / len};
+sf::Vector2f Bullet::setDirection(sf::Vector2f& playerPos, sf::Vector2f& targetPos) {
+    sf::Vector2f newDir = targetPos - playerPos;
+    float len = sqrt(newDir.x * newDir.x + newDir.y * newDir.y);
+    direction = {newDir.x / len, newDir.y / len};
+    return direction;
 }
 
 void Bullet::update() {
